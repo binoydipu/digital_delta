@@ -1,3 +1,4 @@
+import 'package:digital_delta/features/auth/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -167,22 +168,6 @@ class RegisterScreen extends StatelessWidget {
 
                     const SizedBox(height: 14),
 
-                    /// CHECKBOX
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Checkbox(value: false, onChanged: (_) {}),
-                        const Expanded(
-                          child: Text(
-                            "I agree to the Terms of Service and Privacy Protocol.",
-                            style: TextStyle(fontSize: 13),
-                          ),
-                        ),
-                      ],
-                    ),
-
-                    const SizedBox(height: 14),
-
                     /// BUTTON
                     SizedBox(
                       width: double.infinity,
@@ -194,7 +179,9 @@ class RegisterScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(12),
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          // TODO: Implement registration logic 
+                        },
                         child: const Text(
                           "Create Account →",
                           style: TextStyle(fontSize: 16, color: Colors.white),
@@ -207,13 +194,21 @@ class RegisterScreen extends StatelessWidget {
                     /// LOGIN TEXT
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
+                      children: [
                         Text("Already have an account? "),
-                        Text(
-                          "Login",
-                          style: TextStyle(
-                            color: Color(0xFF2EC4B6),
-                            fontWeight: FontWeight.bold,
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (_) => const LoginScreen()),
+                            );
+                          },
+                          child: Text(
+                            "Login",
+                            style: TextStyle(
+                              color: Color(0xFF2EC4B6),
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ],
