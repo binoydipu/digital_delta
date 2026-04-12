@@ -1,4 +1,7 @@
 import 'dart:async';
+import 'dart:io';
+
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:digital_delta/core/services/mesh_service.dart';
 import 'package:digital_delta/core/services/crdt_service.dart';
 import 'package:digital_delta/features/mesh/screens/conflict_resolution_screen.dart';
@@ -58,13 +61,37 @@ class _MeshDashboardScreenState extends State<MeshDashboardScreen> {
 
   /// Request all runtime permissions needed by nearby_connections
   Future<bool> _requestPermissions() async {
-    final permissions = [
-      Permission.bluetoothAdvertise,
-      Permission.bluetoothConnect,
-      Permission.bluetoothScan,
-      Permission.location,
-      Permission.nearbyWifiDevices,
-    ];
+    if (!Platform.isAndroid) return true; // Default true for non-Android testing
+
+    final androidInfo = await DeviceInfoPlugin().androidInfo;
+    final sdkInt = androidInfo.version.sdkInt;
+
+    List<Permission> permissions = [];
+
+    if (sdkInt >= 33) {
+      // Android 13+
+      permissions = [
+        Permission.bluetoothAdvertise,
+        Permission.bluetoothConnect,
+        Permission.bluetoothScan,
+        Permission.location,
+        Permission.nearbyWifiDevices,
+      ];
+    } else if (sdkInt >= 31) {
+      // Android 12
+      permissions = [
+        Permission.bluetoothAdvertise,
+        Permission.bluetoothConnect,
+        Permission.bluetoothScan,
+        Permission.location,
+      ];
+    } else {
+      // Android 11 and lower
+      permissions = [
+        Permission.bluetooth,
+        Permission.location,
+      ];
+    }
 
     Map<Permission, PermissionStatus> statuses = await permissions.request();
 
@@ -73,7 +100,7 @@ class _MeshDashboardScreenState extends State<MeshDashboardScreen> {
     statuses.forEach((permission, status) {
       if (!status.isGranted) {
         allGranted = false;
-        _logs.insert(0, '[${_timeStr()}] ⚠ ${permission.toString()} not granted');
+        _logs.insert(0, '[${_timeStr()}] ⚠ ${permission.toString().split('.').last} not granted');
       }
     });
 
