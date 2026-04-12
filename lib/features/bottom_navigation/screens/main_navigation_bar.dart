@@ -1,8 +1,9 @@
+import 'package:digital_delta/map/services/map_provider.dart';
+import 'package:digital_delta/map/visuals/map_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../assets/screens/assets_screen.dart';
 import '../../dashboard/dashboard_screen.dart';
-import '../../map/screens/map_screens.dart';
 import '../../profile/screens/profile_screen.dart';
 import '../../sync/screens/sync_screen.dart';
 
@@ -17,10 +18,10 @@ class MainNavigationScreen extends StatefulWidget {
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
   int currentIndex = 0;
 
-  final List<Widget> screens = const [
+  final List<Widget> screens = [
     DashboardScreen(),
     AssetsScreen(),
-    MapScreens(),
+    MapScreen(provider: MapProvider()),
     SyncScreen(),
     ProfileScreen(),
   ];
