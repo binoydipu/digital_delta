@@ -1,5 +1,7 @@
 import 'package:digital_delta/core/theme/app_theme.dart';
 import 'package:digital_delta/features/auth/screens/register_screen.dart';
+import 'package:digital_delta/map/services/map_provider.dart';
+import 'package:digital_delta/map/visuals/map_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,13 +13,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mapProvider = MapProvider();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Digital Delta',
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.system, 
-      home: RegisterScreen(),
+      home: MapScreen(provider: mapProvider),
     );
   }
 }
