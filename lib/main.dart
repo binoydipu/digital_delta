@@ -6,6 +6,8 @@ import 'package:digital_delta/map/visuals/map_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  // Ensure Flutter is initialized before using path_provider
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
