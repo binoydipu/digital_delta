@@ -1,8 +1,7 @@
+import 'package:digital_delta/features/recover_rescue/screens/recover_rescue_screen.dart';
 import 'package:digital_delta/map/services/map_provider.dart';
 import 'package:digital_delta/map/visuals/map_screen.dart';
 import 'package:flutter/material.dart';
-
-import '../../assets/screens/assets_screen.dart';
 import '../../dashboard/dashboard_screen.dart';
 import '../../profile/screens/profile_screen.dart';
 import '../../sync/screens/sync_screen.dart';
@@ -20,7 +19,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
 
   final List<Widget> screens = [
     DashboardScreen(),
-    AssetsScreen(),
+    RecoveryRescueScreen(),
     MapScreen(provider: MapProvider()),
     SyncScreen(),
     ProfileScreen(),
