@@ -11,6 +11,8 @@
 
 The app uses **Bluetooth/Wi-Fi Direct mesh networking** (via Google Nearby Connections), **CRDT-based conflict-free data sync**, **end-to-end encryption**, and a **local-first SQLite ledger** to ensure data integrity even when devices go offline and reconnect later.
 
+[![Demo Video](https://img.youtube.com/vi/1j4evOQcyHY/0.jpg)](https://youtu.be/1j4evOQcyHY?si=eYnebenm-JtrTpDV)
+
 ---
 
 ## ✨ Key Features
@@ -82,6 +84,17 @@ lib/
     ├── services/                    # MapProvider
     └── visuals/                     # MapPainter, MapScreen
 ```
+
+---
+
+## Architecture Diagrams
+
+Available at /docs folder in the root directory.
+
+ - Layered Architecture Diagram
+ - CRDT Sync Data Flow Diagram
+ - Message Relay Diagram
+ - Database Schema Diagram
 
 ---
 
